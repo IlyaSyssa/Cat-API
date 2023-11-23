@@ -1,3 +1,4 @@
+const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const path = require('path');
 
@@ -6,6 +7,18 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
+  },
+  plugins: [
+    new Dotenv()
+  ],
+  mode: 'development',
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    hot: true,
+    port: 9000,
   },
   module: {
     rules: [
